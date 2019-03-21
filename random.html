@@ -6,15 +6,25 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Welcome to AJAX world</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
         <script language="javascript" type="text/javascript">
-            function changeContent()
+            var xmlhttp;
+            function GetNumber()
             {
-                var theDiv = document.getElementById("divNoe");
-                theDiv.innerHTML= "<h1>Texte changed.....</h1>";
+                xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = callback;
+            }
+
+            // when information cames back from the Server
+            function callback()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    document.getElementById("result").innerHTML = xmlhttp.responseText;
+                }
             }
         </script>
     </head>
@@ -24,9 +34,9 @@
         <![endif]-->
         
         <script src="" async defer></script>
-        <div id='divNoe'>
-            <p>Here is some HTML content...</p>
+        <div id="result">
+
         </div>
-        <input type="button" value="Change content" onclick="changeContent()" />
+        <input type="button" value="Get Random Number" onclick="GetNumber()" />
     </body>
 </html>
